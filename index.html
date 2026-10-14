@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./resources/ol.css">
+        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+        <link href="resources/photon-geocoder-autocomplete.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+        <link rel="stylesheet" href="./resources/qgis2web.css">
+        <style>
+        html, body {
+            background-color: #ffffff;
+        }
+        .ol-control > * {
+            background-color: #f8f8f8!important;
+            color: #444444!important;
+            border-radius: 0px;
+        }
+        .ol-attribution a, .gcd-gl-input::placeholder, .search-layer-input-search::placeholder {
+            color: #444444!important;
+        }
+        .search-layer-input-search {
+            background-color: #f8f8f8!important;
+        }
+        .ol-control > *:focus, .ol-control >*:hover {
+            background-color: rgba(248, 248, 248, 0.7)!important;
+        } 
+        .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 2px !important;
+        } 
+        </style>
+
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        #map-logos {
+            position: absolute;
+            right: 12px;
+            bottom: 34px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 8px;
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        #map-logos img {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 160px;
+            max-height: 42px;
+            object-fit: contain;
+        }
+        @media (max-width: 600px) {
+            #map-logos {
+                right: 8px;
+                bottom: 30px;
+                gap: 6px;
+                padding: 4px 6px;
+            }
+            #map-logos img {
+                max-width: 110px;
+                max-height: 32px;
+            }
+        }
+        </style>
+        <title>PAT Asturias — Mapa interactivo</title>
+    </head>
+    <body>
+        <div id="map">
+            <div id="popup" class="ol-popup">
+                <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                <div id="popup-content"></div>
+            </div>
+            <div id="map-logos" aria-label="Logotipos institucionales">
+                <img src="./images/Logo%20GD.png" alt="Logo GD">
+                <img src="./images/Logo-Principado-Asturias-horizontal-2023.png" alt="Principado de Asturias">
+            </div>
+        </div>
+        <script src="resources/qgis2web_expressions.js"></script>
+<script src="resources/proj4.js"></script>
+        <script>proj4.defs('EPSG:25830','+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs');</script>
+        <script src="./resources/functions.js"></script>
+        <script src="./resources/ol.js"></script>
+        <script src="./resources/ol-layerswitcher.js"></script>
+        <script src="resources/photon-geocoder-autocomplete.min.js"></script>
+        <script src="resources/olms.js"></script>
+        <script src="layers/Principalescursosdeagua_2.js"></script><script src="layers/NucRural_enCamino_3.js"></script><script src="layers/NcleosUrbanos_4.js"></script><script src="layers/Concejos_Asturias_OFICIAL_5.js"></script><script src="layers/Comarcas_6.js"></script><script src="layers/Espacios_RN2000_7.js"></script><script src="layers/Parque_Nacional_9.js"></script><script src="layers/Parques_Naturales_10.js"></script><script src="layers/Reservas_Naturales_11.js"></script><script src="layers/Paisajes_Protegidos_12.js"></script><script src="layers/Monumentos_Naturales_Poligonos_13.js"></script><script src="layers/Monumentos_Naturales_Puntos_14.js"></script><script src="layers/Reservas_Biosfera_15.js"></script><script src="layers/Humedales_Ramsar_16.js"></script><script src="layers/BICs_Area_17.js"></script><script src="layers/BICs_Puntos_18.js"></script><script src="layers/BICs_Entorno_19.js"></script><script src="layers/Ruta_Plata_20.js"></script><script src="layers/BienesIPCAenCaminoCosta_21.js"></script><script src="layers/BienesIPCAenRI_22.js"></script><script src="layers/Elementosdeinteres_23.js"></script><script src="layers/Injustificado_inexistente_24.js"></script><script src="layers/Propuesta_Localizaciones_25.js"></script><script src="layers/Propuesta_VarianteItinerario_26.js"></script><script src="layers/PuntoN_CrucePeligroso_27.js"></script><script src="layers/PuntosNegros_28.js"></script><script src="layers/ALT2_MODERADA_AMBITO_COMPLETO_V1_SHP_29.js"></script><script src="layers/ALT1_RESTRICTIVA_AMBITO_COMPLETO_V1_SHP_30.js"></script><script src="layers/CaminoEnlace_31.js"></script><script src="layers/CaminodelSalvador_32.js"></script><script src="layers/CaminoPrimitivo_33.js"></script><script src="layers/CaminodelaCosta_34.js"></script><script src="layers/AmbitoOrig_35.js"></script><script src="layers/TrazadoOrig_36.js"></script>
+        <script src="styles/Principalescursosdeagua_2_style.js"></script><script src="styles/NucRural_enCamino_3_style.js"></script><script src="styles/NcleosUrbanos_4_style.js"></script><script src="styles/Concejos_Asturias_OFICIAL_5_style.js"></script><script src="styles/Comarcas_6_style.js"></script><script src="styles/Espacios_RN2000_7_style.js"></script><script src="styles/Habitats_Interes_Comunitario_5000_8_style.js"></script><script src="styles/Parque_Nacional_9_style.js"></script><script src="styles/Parques_Naturales_10_style.js"></script><script src="styles/Reservas_Naturales_11_style.js"></script><script src="styles/Paisajes_Protegidos_12_style.js"></script><script src="styles/Monumentos_Naturales_Poligonos_13_style.js"></script><script src="styles/Monumentos_Naturales_Puntos_14_style.js"></script><script src="styles/Reservas_Biosfera_15_style.js"></script><script src="styles/Humedales_Ramsar_16_style.js"></script><script src="styles/BICs_Area_17_style.js"></script><script src="styles/BICs_Puntos_18_style.js"></script><script src="styles/BICs_Entorno_19_style.js"></script><script src="styles/Ruta_Plata_20_style.js"></script><script src="styles/BienesIPCAenCaminoCosta_21_style.js"></script><script src="styles/BienesIPCAenRI_22_style.js"></script><script src="styles/Elementosdeinteres_23_style.js"></script><script src="styles/Injustificado_inexistente_24_style.js"></script><script src="styles/Propuesta_Localizaciones_25_style.js"></script><script src="styles/Propuesta_VarianteItinerario_26_style.js"></script><script src="styles/PuntoN_CrucePeligroso_27_style.js"></script><script src="styles/PuntosNegros_28_style.js"></script><script src="styles/ALT2_MODERADA_AMBITO_COMPLETO_V1_SHP_29_style.js"></script><script src="styles/ALT1_RESTRICTIVA_AMBITO_COMPLETO_V1_SHP_30_style.js"></script><script src="styles/CaminoEnlace_31_style.js"></script><script src="styles/CaminodelSalvador_32_style.js"></script><script src="styles/CaminoPrimitivo_33_style.js"></script><script src="styles/CaminodelaCosta_34_style.js"></script><script src="styles/AmbitoOrig_35_style.js"></script><script src="styles/TrazadoOrig_36_style.js"></script>
+        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./resources/Autolinker.min.js"></script>
+        <script src="./resources/qgis2web.js"></script>        
+    </body>
+</html>
